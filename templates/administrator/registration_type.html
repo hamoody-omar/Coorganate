@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+    {% include 'scripts.html' %}
+   </head>
+   <body>
+   {% load crispy_forms_tags %}
+      <!-- include 'heading0.html' -->
+      <main>
+        <div class="row">
+          <div class="col s12 m8 l4 offset-m2 offset-l4">
+            <div class="card-panel">
+                <div class="row center-align">
+                    <div class="hide-on-small-only">
+                        <div class="row">
+                            <div class="col s6 m12 l12">
+                                <h1>Coorganate</h1>
+                            </div>
+                            <div class="col s6 m12 l12">
+                                <h5>Explain the two different registrations</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hide-on-med-and-up">
+                        <div class="row">
+                            <div class="col s12">
+                                <h1>Coorganate</h1>
+                            </div>
+                            <div class="col s6 m12 l12">
+                                <h5>Explain the two different registrations</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-section" >
+                      {% csrf_token %}   
+                      <div> 
+                        <div class="row center-align">
+                            <a class="btn waves-effect waves-light" href="/medical_professional_registration">
+                                        <i class="material-icons right">person_add</i>Medical Professional</a>
+                        </div>    
+                        <div class="row center-align">
+                            <a class="btn waves-effect waves-light" href="/organization_registration">
+                                        <i class="material-icons right">account_balance</i>organization</a>
+                        </div>    
+                      </div>  
+                </div>
+            <hr />
+            <div class="row">
+                <p style="text-align-last: left;"><a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Back to log in</a></p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- include 'footer.html' %} -->
+   </body>
+</html>

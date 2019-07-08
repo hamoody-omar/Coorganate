@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+    {% include 'scripts.html' %}
+   </head>
+   <body>
+      <!-- include 'heading0.html' -->
+      <main>
+        <div class="row">
+          <div class="col s12 m8 l4 offset-m2 offset-l4">
+            <div class="card-panel">
+                <div class="row center-align">
+                    <div class="hide-on-small-only">
+                        <div class="row">
+                            <div class="col s6 m12 l12">
+                                <h1>Coorganate</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6 m12 l12">
+                                <h5>{{message}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hide-on-med-and-up">
+                        <div class="row">
+                            <div class="col s12">
+                                <h1>Coorganate</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <h5>{{message}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <hr />
+            <div class="row">
+                <p style="text-align-last: left;"><a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Back to log in</a></p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- include 'footer.html' %} -->
+   </body>
+</html>
