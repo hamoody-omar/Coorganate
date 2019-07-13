@@ -1,0 +1,100 @@
+<!-- organization_organs_list.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   </head>
+   <body>
+      {% include './administrator_heading.html' %}
+      <main class="coorganate-light-blue">
+            <div class="row center-align">
+                  <div class="col s12">
+                    <h3></h3>
+                  </div>
+            </div>
+            <div class="row">
+               <form name="organs_filter" id="organs_filter" method="POST">
+                     {% csrf_token %}
+                     <div class="input-field col s3 offset-s1">
+                           <select name="organs_filter" form="organs_filter" id="organs_filter" onchange="this.form.submit();">
+                                    
+                                    <optgroup label="Curent">
+                                       <option>{{curent_filter}}</option>
+                                    </optgroup>
+                                    
+                                    <optgroup label="All">
+                                       <option>All</option>
+                                    </optgroup>
+
+                                    <optgroup label="Request status">
+                                          <option   value="request_status---requested"  >Requested</option>
+                                          <option   value="request_status---notrequested"  >Not requested</option>
+                                    </optgroup>
+
+                                    <optgroup label="Organ types">
+                                       {% for organ_type in organ_types %}
+                                          <option value="organ_type---{{organ_type}}" >{{organ_type}}</option>
+                                       {% endfor %}
+                                    </optgroup>
+
+                                    <optgroup label="Blood types">
+                                          {% for blood_type in blood_types %}
+                                             <option value="blood_type---{{blood_type}}" >{{blood_type}}</option>
+                                          {% endfor %}
+                                    </optgroup>
+                                 
+                           </select>
+                           <label for="organs_filter">Filter by</label>
+                     </div>
+                     <input type="hidden" name="filter" value='filter'>
+                  </form>
+               </div>
+
+               <div class="row" style="margin-top:9px;">
+                  <div class="col s12 m10 offset-m1">
+                     <div class="card coorganate-card">
+                        <div class="card-content">
+                           <table class="responsive-table">
+                              <thead>
+                                 <th>Type</th>
+                                 <!--<th>Extracted Date</th>-->
+                                 <th>Expiration Date</th>
+                                 <th>Blood Type</th>
+                                 <th>Organization</th>
+                                 <th>City</th>
+                                 <th>Watch</th>
+                                 <th>Request Status</th>
+                                 <th>Details</th>
+                              </thead>
+                              <tbody>
+                                 {% for person_organ, address, organization, requested_organ, watched_organ in organs_range %}
+                                    <tr>
+                                       <td>{{person_organ.organ.organ_type}}</td>
+                                       <td>{{person_organ.organ.expiration_date}}</td>
+                                       <td>{{person_organ.person.blood_type}}</td>
+                                       <td>{{organization.name}}</td>
+                                       <td>{{address.city}}</td>
+                                       <td>{{requested_organ}}</td>
+                                       <td>{{watched_organ}}</td>
+                                       <td>
+                                          <a class="waves-effect waves-light btn blue-button-small" href="/administrator_organ_details?id={{person_organ.organ.id}}"><i class="material-icons left">details</i>Details</a>
+                                       </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                       <td class="center-align" colspan="4"><i>No Organs</i></td>
+                                    </tr>
+                                 {% endfor %}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+
+      </div>
+    </main>
+    {% include 'footer.html'%}
+  </body>
+  </html>

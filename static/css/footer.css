@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Karla";
+  src: url("../assets/fonts/Karla/Karla-Regular.ttf");
+}
+
+.footer-color {
+    background-color: #17C8E0;
+}
+
+div{
+  font-family: "Karla";
+}

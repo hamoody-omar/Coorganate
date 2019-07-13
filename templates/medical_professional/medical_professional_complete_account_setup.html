@@ -1,0 +1,60 @@
+<!-- medical_professional_complete_account_setup.html -->
+{% load static from staticfiles %}
+<!DOCTYPE HTML>
+<html>
+   <head>
+    {% include 'scripts.html' %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Coorganate - Complete Setup</title>
+   </head>
+   <body>
+   {% load crispy_forms_tags %}
+      <!-- include 'heading0.html' -->
+      <main class="coorganate-light-blue">
+        <div class="row" id="content">
+
+          <!-- Request form on right side -->
+          <div class="col s12 m12 l12 right-bg-long">
+            <div class="card-panel coorganate-form-background">
+                <div class="row center-align">
+                    <div class="hide-on-small-only">
+                        <div class="row">
+                            <div class="col s6 m12 l12">
+                                <h2>Complete Account Setup</h2>
+                                <p class="medium-text">Fill out your work address and submit a profile picture.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hide-on-med-and-up">
+                        <div class="row">
+                            <div class="col s12">
+                                <h4>Complete Account Setup</h4>
+                                <p class="medium-text">Fill out your work address and submit a profile picture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-section">
+                  <form id="medical_professional_registration_form" class="coorganate-form" name="medical_professional_registration_form" method="POST" >
+                      {% csrf_token %}
+                      <div class="row">
+                        {{ user_form|crispy }}
+                        {{ med_pro_form|crispy }}
+                      </div>
+
+                      <div class="row center-align">
+                      <button class="btn waves-effect waves-light blue-button-medium" type="submit">Request</button>
+                      </div>
+
+                  </form>
+                <div class="row">
+                    <p class="small-text" style="text-align-last:left;">&nbsp Have an account?<a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Sign in</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </main>
+      <!-- include 'footer.html' %} -->
+      {% include 'footer.html' %}
+   </body>
+</html>

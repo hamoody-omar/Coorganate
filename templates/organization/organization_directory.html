@@ -1,0 +1,50 @@
+<!-- organization_directory.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'scripts.html' %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+  {% include './organization_heading.html' %}
+  <main class="coorganate-light-blue">
+    <div class="row" style="margin-top:30px">
+      <div class="col s12 m12 l10 offset-l1">
+        <div class="card-panel coorganate-card">
+          <table>
+            <thead>
+                <th>Name</th>
+                <th>Support email</th>
+                <th>Domain URL</th>
+                <th>Phone number</th>
+                <th>City</th>
+                <th>Details</th>
+            </thead>
+            <tbody>
+              {% for organization_address in organizations_addresses %}
+              <tr>
+               <td>{{organization_address.organization.name}}</td>
+               <td>{{organization_address.organization.support_email}}</td>
+               <td>{{organization_address.organization.domain_url}}</td>
+               <td>{{organization_address.organization.work_phone_number1}}</td>
+               <td>{{organization_address.address.city}}</td>
+               <td>
+                  <a class="waves-effect waves-light btn blue-button-small" href="/organization_organization_details?id={{organization_address.organization.id}}"><i class="material-icons left">details</i>Details</a>
+               </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class="center-align"><i>No organizations</i></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    {% include 'footer.html'%}
+  </body>
+  </html>

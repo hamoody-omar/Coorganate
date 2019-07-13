@@ -1,0 +1,95 @@
+<!-- organization_directory.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'scripts.html' %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+  {% include './medical_professional_heading.html' %}
+  <main class="coorganate-light-blue">
+    <div class="row" style="margin-top:30px">
+      <div class="col s12 m12 l10 offset-l1">
+        <div class="card-panel coorganate-card">
+                    <div class="section">
+                        <h5><b>Organization's details</b></h5>
+                    </div>
+                        <ul style="font-size: 16px;">
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Name: </b></span>
+                                    <span>{{organization.name}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Support email: </b></span>
+                                    <span>{{organization.support_email}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Domain URL: </b></span>
+                                    <span>{{organization.domain_url}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Phone number: </b></span>
+                                    <span>{{organization.work_phone_number1}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Street address: </b></span>
+                                    <span>{{address.street_address}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>City: </b></span>
+                                    <span>{{address.city}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Zip code: </b></span>
+                                    <span>{{address.zip_code}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>State: </b></span>
+                                    <span>{{address.state}}</span>
+                            </li>
+
+                            <li >
+                                    <span>&nbsp &nbsp&nbsp &nbsp<b>Country: </b></span>
+                                    <span>{{address.country}}</span>
+                            </li>
+                         </ul>
+          <table>
+            <thead>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Work number</th>
+            </thead>
+            <tbody>
+              {% for med_pro_organization in med_pros_organizations %}
+              <tr>
+               <td>{{med_pro_organization.medical_professional.user.first_name}} {{med_pro_organization.medical_professional.user.last_name}}</td>
+               <td>{{med_pro_organization.medical_professional.user.email}}</td>
+               <td>{{med_pro_organization.medical_professional.cellphone_number}}</td>
+               <td>{{med_pro_organization.medical_professional.work_phone_number}}</td>
+               
+              </tr>
+              {% empty %}
+              <tr>
+                <td class="center-align"><i>No medical professionals</i></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    {% include 'footer.html'%}
+  </body>
+  </html>

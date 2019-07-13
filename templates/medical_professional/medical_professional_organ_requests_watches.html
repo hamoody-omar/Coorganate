@@ -1,0 +1,93 @@
+<!-- requested_registration.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+      <title>Coorganate - [Admin] Registration Requests</title>
+   </head>
+   <body>
+      {% include './medical_professional_heading.html' %}
+      <main class="coorganate-light-blue">
+         <div class="row right-align">
+            <div class="col s12 center-align">
+                <h4>Your organ requests</h4>
+             </div>
+            <div class="col s12 m12 l10 offset-l1">
+                <div class="card-panel">
+                    <ul class="collapsible" data-collapsible="expandable">
+                            <li>
+                                <div class="collapsible-header active"><i class="material-icons">layers</i>Medical professional requests&nbsp;&nbsp;</div>
+                                    <div class="collapsible-body">
+                                       <ul class="collection">
+                                       <table class="responsive-table" style="width:100%">
+                                        <thead>
+                                          <td>Type</td>
+                                          <td>Expiration Date</td>
+                                          <td>Details</td>
+                                        </thead>
+                                        <tbody>
+                                        {% for med_pro_request in med_pro_requests %}
+                                        <tr>
+                                            <td>{{med_pro_request.organ.organ_type}} </td>
+                                
+                                            <td>{{med_pro_request.organ.extracted_date}} </td>
+                                            <td>
+                                              <a class="waves-effect waves-light btn blue-button-small" data-position="right" href="/requested_user_account_detail?id={{unap_med_pro.user.username}}"><i class="material-icons left">details</i>Details</a>
+                                            </td>
+                                        </tr>
+
+                                        {% empty %}
+                                        <tr>
+                                            <td class="center-align" colspan="4"><i>No medical professional requests</i></td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                      </table>
+                                 </div>
+                            </li>
+                            <li>
+                                 <div class="collapsible-header active"><i class="material-icons">layers</i>Organization requests&nbsp;&nbsp;
+                                 </div>
+                                 <div class="collapsible-body">
+                                    <ul class="collection">
+                                    <table class="responsive-table" style="width:100%">
+                                        <thead>
+                                          <td>Name</td>
+                                          <td>Support email</td>
+                                          <td>Domain URL</td>
+                                          <td>Work phone</td>
+                                          <td>Details</td>
+                                        </thead>
+                                        <tbody>
+                                        {% for unap_organization in unapproved_organizations %}
+                                        <tr>
+                                          <td>{{unap_organization.name}}</td>
+                                          <td>{{unap_organization.support_email}}</td>
+                                          <td>{{unap_organization.domain_url}}</td>
+                                          <td>{{unap_organization.work_phone_number1}}</td>
+                                          <td>
+                                            <a class="waves-effect waves-light btn blue-button-small" href="/requested_organization_detail?id_={{unap_organization.id}}"><i class="material-icons left">details</i>Details</a>
+                                          </td>
+                                        </tr>
+
+                                        {% empty %}
+                                        <tr>
+                                          <td class="center-align" colspan="4"><i>No Organization requests</i></td>
+                                        </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+
+                                  </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+         </div>
+      </main>
+     {% include 'footer.html'%}
+   </body>
+</html>

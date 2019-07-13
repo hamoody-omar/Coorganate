@@ -1,0 +1,131 @@
+<!-- organization_organ_details.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   </head>
+   <body>
+        {% include './medical_professional_heading.html' %}
+      <main>
+         <div class="row">
+            <div class="col s12 m10 offset-m1">
+               <div class="card coorganate-card">
+                  {% csrf_token %}
+                     <div class="card-content">
+                            <div class="section">
+                                <h5><b>Organ's details</b></h5>
+                            </div>
+                                <ul style="font-size: 16px;">
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organ type: </b></span>
+                                            <span>{{organ.organ_type}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Expiration: </b></span>
+                                            <span>{{organ.expiration_date}}</span>
+                                    </li>
+
+                                    {% if organ.description %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Description: </b></span>
+                                            <span>{{organ.description}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if organ.comment %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Cellphone Number: </b></span>
+                                            <span>{{medical_professional.cellphone_number}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    <div class="section">
+                                            <h5><b>Person's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Age: </b></span>
+                                            <span>{{person.age}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Weight: </b></span>
+                                            <span>{{person.weight}} lb</span>
+                                    </li>
+
+                                    {% if not person.height == 0 %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Height: </b></span>
+                                            <span>{{person.height}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Blood type: </b></span>
+                                            <span>{{person.blood_type}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Race: </b></span>
+                                            <span>{{person.race}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Status: </b></span>
+                                            <span>{% if person.is_alive %} Alive {% else %} Dead {% endif %}</span>
+                                    </li>
+
+                                    <div class="section">
+                                        <h5><b>Location's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Street address: </b></span>
+                                            <span>{{address.street_address}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>City: </b></span>
+                                            <span>{{address.city}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Zip code: </b></span>
+                                            <span>{{address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>State: </b></span>
+                                            <span>{{address.state}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Country: </b></span>
+                                            <span>{{address.country}}</span>
+                                    </li>
+
+
+                                </ul>
+
+                   <div class="card-action">
+                        <div class="row right-align">
+                            {% if not requested %}
+                                <a class="btn waves-effect waves-light white-button-small" href="/medical_professional_organ_request?id={{organ.id}}"><i class="material-icons left">navigation</i>Request</a>
+                            {% endif %}
+                            <a class="btn waves-effect waves-light white-button-small" href="/medical_professional_organ_watch?id={{organ.id}}"><i class="material-icons left">visibility</i>Watch</a>
+                            <a class="btn waves-effect waves-light white-button-small" href="/medical_professional_organs_list"><i class="material-icons left">navigate_before</i>Back</a>
+                        </div>
+                    </div>
+
+               </div>
+            </div>
+         </div>
+
+      </main>
+      {% include 'footer.html' %}
+   </body>
+</html>

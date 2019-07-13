@@ -1,20 +1,35 @@
+<!-- organization_registration.html -->
+{% load static from staticfiles %}
 <!DOCTYPE HTML>
 <html>
    <head>
     {% include 'scripts.html' %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Coorganate - Organization</title>
    </head>
    <body>
    {% load crispy_forms_tags %}
       <!-- include 'heading0.html' -->
       <main>
-        <div class="row">
-          <div class="col s1 m6 offset-m3">
-            <div class="card-panel">
+        <div class="row" id="content">
+          <!-- Logo on left side -->
+          <div class="col s12 m5 l5 left-bg">
+              <div class="header">
+                <h1 id="coorganate-logo">co<b>organ</b>ate</h1>
+                <h5 class="baby-blue-font"><span>by </span><span id="password-logo">password</span><span id="password-logo2">123</span></h5>
+              </div>
+              <div class="center-align">
+                <img class="logo responsive-img" src="/static/images/logo.png">
+              </div>
+            </div>
+
+          <div class="col s12 m7 l7 right-bg-long">
+            <div class="card-panel coorganate-form-card-panel">
                 <div class="row center-align">
                     <div class="hide-on-small-only">
                         <div class="row">
                             <div class="col s6 m12 l12">
-                                <h4>Organization Registration Request</h4>
+                                <h3 class="heading3-36">Organization Registration Request</h3>
                             </div>
                         </div>
                     </div>
@@ -27,26 +42,27 @@
                     </div>
                 </div>
                 <div class="content-section" >
-                  <form method="POST" >
+                  <form  id-= "organization_registration_form " class="coorganate-form tiny-text" method="POST" >
                       {% csrf_token %}
                       <div class="row" >
                         {{ organization_form|crispy }}
                         {{ address_form|crispy }}
-                      </div>    
-                      
-                      <div class="row" style="text-align-last: center;">
-                      <button class="btn waves-effect waves-light" type="submit" >Request</button>
-                      </div>    
-                      
+                      </div>
+
+                      <div class="row center-align" style="text-align-last: center;">
+                      <button class="btn waves-effect waves-light blue-button-small" type="submit" >Request</button>
+                      </div>
+
                   </form>
-                <hr />
+
                 <div class="row">
-                    <p style="text-align-last: left;"><a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Back to log in</a></p>
+                    <p class="small-text" style="text-align-last: center;">&nbsp Have an account?<a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Sign in</a></p>
                 </div>
             </div>
           </div>
         </div>
       </main>
       <!-- include 'footer.html' %} -->
+      {% include 'footer.html' %}
    </body>
 </html>

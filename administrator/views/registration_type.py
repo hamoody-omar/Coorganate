@@ -9,9 +9,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from administrator.forms import UserRegisterForm, MedicalProfessionalForm, OrganizationForm, AddressForm
-from medical_professional.models import Organization, MedicalProfessional, MedicalProfessionalOrganization, Address, OrganizationAddress
-
+from administrator.forms import UserRegisterForm, MedicalProfessionalForm, OrganizationForm, AddressForm, OrganizationUserRegisterForm
+from medical_professional.models import MedicalProfessional
+from organization.models import Organization, MedicalProfessionalOrganization, Address, OrganizationAddress
 
 def registration_type(request):
     '''This view provides the different registration types'''
@@ -23,28 +23,24 @@ def medical_professional_registration(request):
     '''This view allows medical professionals to request a registration'''
 
     if request.method == 'POST':
-        print("heere")
 
         # Get forms
         user_form = UserRegisterForm(request.POST)
         med_pro_form = MedicalProfessionalForm(request.POST)
 
-        print("user form ", user_form.is_valid())
-        print("med form ", med_pro_form.is_valid())
-
         # Validate forms
-        if user_form.is_valid() and med_pro_form.is_valid():
+        if user_form.is_valid() :
             user_form.save()
 
             # Get user and associate with medical professional
             username = user_form.cleaned_data.get('username')
             user = User.objects.get(username=username)
 
-            license_ID = med_pro_form.cleaned_data.get('license_ID')
-            cellphone_number = med_pro_form.cleaned_data.get(
-                'cellphone_number')
-            work_phone_number = med_pro_form.cleaned_data.get(
-                'work_phone_number')
+            license_ID = request.POST['license_ID']
+            cellphone_number = request.POST['cellphone_number']
+
+            if 'work_phone_number' in request.POST:
+                work_phone_number = request.POST['work_phone_number']
 
             med_pro = MedicalProfessional()
             med_pro.user = user
@@ -54,12 +50,12 @@ def medical_professional_registration(request):
             med_pro.save()
 
             # Associate medical professional with their organziation
-            # organization = Organization.objects.get(
-            #     id=int(request.POST['organization']))
-            # med_pro_organization = MedicalProfessionalOrganization()
-            # med_pro_organization.medical_professional = med_pro
-            # med_pro_organization.organization = organization
-            # med_pro_organization.save()
+            organization = Organization.objects.get(
+                 id=int(request.POST['organization']))
+            med_pro_organization = MedicalProfessionalOrganization()
+            med_pro_organization.medical_professional = med_pro
+            med_pro_organization.organization = organization
+            med_pro_organization.save()
 
             messages.success(
                 request, f'Thank you for your request. We will review your form and get back to you as soon as possible.')
@@ -71,8 +67,8 @@ def medical_professional_registration(request):
     # Get the forms and render the medical professional registration form
     context_dict['user_form'] = UserRegisterForm()
     context_dict['med_pro_form'] = MedicalProfessionalForm(request.POST)
-    # context_dict['Organization'] = Organization.objects.filter(
-    #    is_approved=True)
+    context_dict['organizations'] = Organization.objects.filter(
+        is_approved=True)
 
     return render(request, 'administrator/medical_professional_registration.html', context_dict)
 

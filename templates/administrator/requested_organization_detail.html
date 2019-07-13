@@ -1,0 +1,136 @@
+<!-- requested_organization_detail.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   </head>
+   <body>
+        {% include './administrator_heading.html' %}
+        {% load crispy_forms_tags %}
+      <main class="coorganate-light-blue">
+         <div class="row">
+            <div class="col s12 m10 offset-m1">
+               <div class="card">
+                  {% csrf_token %}
+                     <div class="card-content">
+                            <div class="section">
+                                <h5><b>Organization Details</b></h5>
+                            </div>
+                                <ul style="font-size: 16px;">
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization's Name: </b></span>
+                                            <span>{{organization.name}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Domain URL: </b></span>
+                                            <span>{{organization.domain_url}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Support Email: </b></span>
+                                            <span>{{organization.support_email}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Phone number 1: </b></span>
+                                            <span>{{organization.work_phone_number1}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Phone number 2: </b></span>
+                                            <span>{{organization.work_phone_number2}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Street address: </b></span>
+                                            <span>{{organization_address.street_address}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>City: </b></span>
+                                            <span>{{organization_address.city}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Zip code: </b></span>
+                                            <span>{{organization_address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>State: </b></span>
+                                            <span>{{organization_address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Country: </b></span>
+                                            <span>{{organization_address.country}}</span>
+                                    </li>
+
+
+                                </ul>
+
+                    <div class="section">
+                        <h6><b>Input a user admin account for this organization in order to accept the request</b></h6>
+                    </div>
+                    <form id="organization_registration_form" name="organization_registration_form" method="POST" action="/approve_request">
+
+                        {% csrf_token %}
+                        <input name="id_" id="id_" type="hidden" value="{{organization.id}}">
+                        <div class="row">
+                                <!--<div class="input-field col s4">
+                                   <input placeholder="Username" name="username" id="username" type="text" class="validate" pattern=".*\S+.*" required>
+                                   <label for="username"><span class= "red-text">*</span> Username</label>
+                                </div>
+                             </div>
+                             <div class="row">
+                                <div class="input-field col s4">
+                                    <input placeholder="Password" name="password" id="password" type="password" class="validate" pattern=".*\S+.*" required>
+                                    <label for="password"><span class= "red-text">*</span> Password</label>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>The password can't be too similar to your other personal information.</li>
+                                <li>The password must contain at least 8 characters.</li>
+                                <li>The password can't be a commonly used password.</li>
+                                <li>The password can't be entirely numeric.</li>
+                            </ul> -->
+                            <div class="row">
+
+                                        {{ user_form|crispy }}
+
+                            </div>
+                            <!--<div class="row">
+                                <div class="input-field col s4">
+                                    <input placeholder="Password confirmation" name="password2" id="password2" type="password" class="validate" pattern=".*\S+.*" required>
+                                        <label for="password2"><span class= "red-text">*</span> Password confirmation</label>
+                                </div>
+                            </div>  -->
+
+                            <div class="card-action">
+                                    <div class="row right-align">
+
+                                        <button class="btn waves-effect waves-light blue-button-small" type="submit"><i class="material-icons right">check_circle</i>Accept & Create</button>
+
+                                        <a class="btn waves-effect waves-light blue-button-small" href="/decline_request?id={{medical_professional.user.username}}">
+                                            <i class="material-icons right">delete</i>decline</a>
+
+
+                                        <a class="btn waves-effect waves-light blue-button-small" href="/requested_registration"><i class="material-icons left">navigate_before</i>Back</a>
+                                    </div>
+                                </div>
+
+                    </form>
+
+
+               </div>
+            </div>
+         </div>
+
+      </main>
+      {% include 'footer.html' %}
+   </body>
+</html>

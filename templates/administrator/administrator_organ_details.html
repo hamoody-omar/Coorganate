@@ -1,0 +1,222 @@
+<!-- organization_organ_details.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   </head>
+   <body>
+        {% include './administrator_heading.html' %}
+      <main class="coorganate-light-blue">
+         <div class="row">
+            <div class="col s12 m10 offset-m1">
+               <div class="card coorganate-card">
+                  {% csrf_token %}
+                     <div class="card-content">
+                            <div class="section">
+                                <h5><b>Organ's details</b></h5>
+                            </div>
+                                <ul style="font-size: 16px;">
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organ type: </b></span>
+                                            <span>{{organ.organ_type}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Expiration: </b></span>
+                                            <span>{{organ.expiration_date}}</span>
+                                    </li>
+
+                                    {% if organ.description %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Description: </b></span>
+                                            <span>{{organ.description}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if organ.comment %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Cellphone Number: </b></span>
+                                            <span>{{medical_professional.cellphone_number}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    <div class="section">
+                                            <h5><b>Person's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Age: </b></span>
+                                            <span>{{person.age}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Weight: </b></span>
+                                            <span>{{person.weight}} lb</span>
+                                    </li>
+
+                                    {% if not person.height == 0 %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Height: </b></span>
+                                            <span>{{person.height}}</span>
+                                    </li>
+                                    {% endif %}
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Blood type: </b></span>
+                                            <span>{{person.blood_type}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Race: </b></span>
+                                            <span>{{person.race}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Status: </b></span>
+                                            <span>{% if person.is_alive %} Alive {% else %} Dead {% endif %}</span>
+                                    </li>
+
+                                    <div class="section">
+                                            <h5><b>Organ organization's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization name: </b></span>
+                                            <span>{{organization.name}}</span>
+                                    </li>
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization support email: </b></span>
+                                            <span>{{organization.support_email}}</span>
+                                    </li>
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization domain URL: </b></span>
+                                            <span>{{organization.domain_url}}</span>
+                                    </li>
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization phone number: </b></span>
+                                            <span>{{organization.work_phone_number1}}</span>
+                                    </li>
+
+                                    <div class="section">
+                                        <h5><b>Location's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Street address: </b></span>
+                                            <span>{{address.street_address}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>City: </b></span>
+                                            <span>{{address.city}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Zip code: </b></span>
+                                            <span>{{address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>State: </b></span>
+                                            <span>{{address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Country: </b></span>
+                                            <span>{{address.country}}</span>
+                                    </li>
+
+
+                                    <div class="section">
+                                            <h5><b>Requester's details</b></h5>
+                                    </div>
+                                    {% if requester %}
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Full name: </b></span>
+                                                <span>{{requester.user.first_name}} {{requester.user.last_name}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Email: </b></span>
+                                                <span>{{requester.user.email}}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Cell phone: </b></span>
+                                                <span>{{requester.cellphone_number1}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Work phone: </b></span>
+                                                <span>{{requester.work_phone_number}}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Requester's organization name: </b></span>
+                                                <span>{{requester_organization.name}}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Requester's organization support email: </b></span>
+                                                <span>{{requester_organization.support_email}}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Requester's organization domain URL: </b></span>
+                                                <span>{{requester_organization.domain_url}}</span>
+                                        </li>
+                                        <li >
+                                                <span>&nbsp &nbsp&nbsp &nbsp<b>Requester's organization phone number: </b></span>
+                                                <span>{{requester_organization.work_phone_number1}}</span>
+                                        </li>
+                                    {% else %}
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>No request </b></span>
+                                    </li>
+                                    {% endif %}
+
+
+
+                                </ul>
+
+                                <table>
+                                        <thead>
+                                            <th>Full name</th>
+                                            <th>Email</th>
+                                            <th>Phone number</th>
+                                            <th>Work number</th>
+                                        </thead>
+                                        <tbody>
+                                          {% for organ_watcher in organ_watchers %}
+                                          <tr>
+                                           <td>{{organ_watcher.medical_professional.user.first_name}} {{med_pro_organization.medical_professional.user.last_name}}</td>
+                                           <td>{{organ_watcher.medical_professional.user.email}}</td>
+                                           <td>{{organ_watcher.medical_professional.cellphone_number}}</td>
+                                           <td>{{organ_watcher.medical_professional.work_phone_number}}</td>
+
+                                          </tr>
+                                          {% empty %}
+                                          <tr>
+                                            <td class="center-align"><i>No watchers</i></td>
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                        </table>
+
+                   <div class="card-action">
+                        <div class="row right-align">
+
+                            {% if requester %}
+                                <a class="btn waves-effect waves-light blue-button-small" href="#">
+                                    <i class="material-icons right">check</i>Approve</a>
+                            {% endif %}
+
+                            <a class="btn waves-effect waves-light white-button-small" href="/administrator_organs_list"><i class="material-icons left">navigate_before</i>Back</a>
+                        </div>
+                    </div>
+
+               </div>
+            </div>
+         </div>
+
+      </main>
+      {% include 'footer.html' %}
+   </body>
+</html>

@@ -25,7 +25,7 @@ SECRET_KEY = 's9llmega79ye$dj$@&72rq_g_hkv8+cb9+p4o@0n7l5@j@%)q)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['173.193.82.228','127.0.0.1']
 
 #ADMIN_MEDIA_PREFIX = '/static/'
 
@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'medical_professional',
     'organ',
+    'administrator',
+    'organization',
+    #'materialize',
     'crispy_forms',
+    'crispy_forms_materialize'
 ]
 
 MIDDLEWARE = [
@@ -111,9 +115,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = '/coorganate/'
+#STATIC_URL = '/coorganate/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
 )
 
 # Internationalization
@@ -135,6 +141,6 @@ USE_TZ = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
 LOGIN_REDIRECT_URL = 'redirect_user'
 LOGIN_URL = 'login'

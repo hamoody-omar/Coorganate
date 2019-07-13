@@ -1,0 +1,85 @@
+<!-- administrator_heading.html -->
+{% load static from staticfiles %}
+<link rel="stylesheet" href="{% static '/css/navbar.css' %}">
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+<header>
+            <ul id="account" class="dropdown-content">
+                <li class="divider"></li>
+                <li><a href="/logout/">Log out</a></li>
+            </ul>
+
+            <nav class="navbar-color">
+                <div class="nav-wrapper">
+                <!--<ul>
+                    <li>
+                            <a href="#" class="brand-logo" ><i class="large material-icons icon-yellow">healing</i>Coorganate</a>
+                        </li>
+                </ul> -->
+                <a href="#!" class="brand-logo"><img height=65px src="/static/images/logo-header.png"></a>
+                <ul class="right">
+                        <li>
+                            <a id='organs' class='dropdown-button tooltipped' data-tooltip="Organs" href="/administrator_organs_list">
+                                <i class='material-icons'>healing</i></a>
+                        </li>
+                        <li>
+                            <a id='analytics' class='dropdown-button tooltipped' data-tooltip="Analytics" href="/administrator_analytics">
+                                <i class='material-icons'>show_chart</i></a>
+                        </li>
+                        <!-- <li>
+                            <a id='directory' class='dropdown-button tooltipped'
+                                data-tooltip="Directory" href="/administrator_directory">
+                                <i class='material-icons'>dvr</i> </a>
+                        </li> -->
+                        <li>
+                            <a id='requests' class='dropdown-button tooltipped'
+                                data-tooltip="Requests" href="/requested_registration">
+                                <i class='material-icons'>playlist_add</i> </a>
+                        </li>
+                        <li>
+                            <a id='notification-count-desktop' class='dropdown-button'
+                                href='#!' data-constrainwidth='false' data-beloworigin='true' data-activates='notifications'
+                                data-position="left" data-delay="50">
+                                <i class='material-icons notification-icon'>notifications</i>
+                                <!-- This needs to be linked to an actual notification page -->
+                                <small class="notification-badge hide"></small>
+                            </a>
+                            <ul id="notifications" class="dropdown-content" style="max-width: 36vw;">
+                                <li><a class="notification-count-parent" href="">Notifications <span style="float:right;"
+                                            class="badge notification-count"></span></a></li>
+                                <div id="notifications-desktop" class="notification-box-list">
+                                </div>
+                                <li><a class="clearAll waves-effect" href="#!"><i class="material-icons">clear_all</i>Clear
+                                        All</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-button" href="#!" data-constrainwidth="false" data-beloworigin="true"
+                                data-activates="account"><i class="material-icons">more_vert</i></a>
+                        </li>
+                    </ul>
+
+
+                <!--MOBILE-->
+                <!--
+                <ul class="side-nav" id="slide-out">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                              <img src="">
+                            </div>
+                            <a href="#!user"><img class="circle" src="{{profile_pic}}"></a>
+                            <a href="#!name"><span class="white-text name">Welcome, {{username}}</span></a>
+                          </div>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+
+
+                        </ul>
+                    </li>
+                </ul>
+            -->
+                </div>
+            </nav>
+</header>

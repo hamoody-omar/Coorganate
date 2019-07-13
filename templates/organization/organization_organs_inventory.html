@@ -1,0 +1,64 @@
+<!-- organizations_organs_inventory.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+   </head>
+   <body>
+      {% include './organization_heading.html' %}
+      <main class="coorganate-light-blue">
+             <div class="row center-align">
+                  <div class="col s12">
+                     <h3></h3>
+               </div>
+
+                  <div class="row right-align">
+                     <div class="col s12 m10 offset-m1">
+                        <a class="waves-effect waves-light btn blue-button-small" href="/organization_add_edit_organ"><i class="material-icons left">add_circle</i>Add new organ</a>
+                     </div>
+                  </div>
+
+               <div class="row">
+                  <div class="col s12 m10 offset-m1">
+                     <div class="card coorganate-card">
+                        <div class="card-content">
+                           <table class="responsive-table">
+                              <thead>
+                                 <th>Type</th>
+                                 <!--<th>Extracted Date</th>-->
+                                 <th>Expiration Date</th>
+                                 <th>Blood Type</th>
+                                 <th>Age</th>
+                                 <th>Race</th>
+                                 <th>Details</th>
+                              </thead>
+                              <tbody>
+                                 {% for organ, person in organs_persons %}
+                                    <tr>
+                                       <td>{{organ.organ_type}}</td>
+                                       <td>{{organ.expiration_date}}</td>
+                                       <td>{{person.blood_type}}</td>
+                                       <td>{{person.age}}</td>
+                                       <td>{{person.race}}</td>
+                                       <td>
+                                          <a class="waves-effect waves-light btn blue-button-small" href="/organization_organ_details?id={{organ.id}}&&editable=True"><i class="material-icons left">details</i>Details</a>
+                                       </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                       <td class="center-align" colspan="4"><i>No Organs</i></td>
+                                    </tr>
+                                 {% endfor %}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+      </main>
+     {% include 'footer.html'%}
+   </body>
+</html>

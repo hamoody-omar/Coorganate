@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.conf import settings
+#from django.contrib.auth.views import logout
+
 #from users import views as users_views
 
 admin.autodiscover()
@@ -25,7 +27,10 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='login.html'), name='logout'),
+    path('', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('', include('organ.urls')),
     path('', include('medical_professional.urls')),
     path('', include('administrator.urls')),
+    path('', include('organization.urls')),
 ]

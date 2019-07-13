@@ -1,0 +1,126 @@
+<!-- requested_user_account_detail.html -->
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% include 'scripts.html' %}
+      <link rel="stylesheet" href="{% static '/css/style.css' %}">
+      <title>Coorganate - [Admin] User Details</title>
+   </head>
+   <body>
+        {% include './administrator_heading.html' %}
+      <main class="coorganate-light-blue">
+         <div class="row">
+            <div class="col s12 m10 offset-m1">
+               <div class="card">
+                  {% csrf_token %}
+                     <div class="card-content">
+                            <div class="section">
+                                <h5><b>Account's details</b></h5>
+                            </div>
+                                <ul style="font-size: 16px;">
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Full Name: </b></span>
+                                            <span>{{medical_professional.user.first_name}} {{medical_professional.user.first_name}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Email: </b></span>
+                                            <span>{{medical_professional.user.email}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>License ID: </b></span>
+                                            <span>{{medical_professional.license_ID}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Cellphone Number: </b></span>
+                                            <span>{{medical_professional.cellphone_number}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Work phone Number: </b></span>
+                                            <span>{{medical_professional.work_phone_number}}</span>
+                                    </li>
+
+                                    <div class="section">
+                                            <h5><b>Organization's details</b></h5>
+                                    </div>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Organization's Name: </b></span>
+                                            <span>{{organization.name}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Domain URL: </b></span>
+                                            <span>{{organization.domain_url}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Support Email: </b></span>
+                                            <span>{{organization.support_email}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Phone number 1: </b></span>
+                                            <span>{{organization.work_phone_number1}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Phone number 2: </b></span>
+                                            <span>{{organization.work_phone_number2}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Street address: </b></span>
+                                            <span>{{organization_address.street_address}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>City: </b></span>
+                                            <span>{{organization_address.city}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Zip code: </b></span>
+                                            <span>{{organization_address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>State: </b></span>
+                                            <span>{{organization_address.zip_code}}</span>
+                                    </li>
+
+                                    <li >
+                                            <span>&nbsp &nbsp&nbsp &nbsp<b>Country: </b></span>
+                                            <span>{{organization_address.country}}</span>
+                                    </li>
+
+
+                                </ul>
+
+                   <div class="card-action">
+                        <div class="row right-align">
+
+                            <a class="btn waves-effect waves-light button-blue-small" href="/approve_request?id={{medical_professional.user.username}}">
+                                <i class="material-icons right">check_circle</i>Accept</a>
+
+                            <a class="btn waves-effect waves-light button-blue-small" href="/decline_request?id={{medical_professional.user.username}}">
+                                <i class="material-icons right">delete</i>decline</a>
+
+
+                            <a class="btn waves-effect waves-light button-blue-small" href="/requested_registration"><i class="material-icons left">navigate_before</i>Back</a>
+                        </div>
+                    </div>
+
+               </div>
+            </div>
+         </div>
+
+      </main>
+      {% include 'footer.html' %}
+   </body>
+</html>

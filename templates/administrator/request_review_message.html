@@ -1,47 +1,67 @@
+<!-- request_review_message.html -->
+{% load static from staticfiles %}
 <!DOCTYPE HTML>
 <html>
-   <head>
-    {% include 'scripts.html' %}
-   </head>
-   <body>
-      <!-- include 'heading0.html' -->
-      <main>
-        <div class="row">
-          <div class="col s12 m8 l4 offset-m2 offset-l4">
-            <div class="card-panel">
-                <div class="row center-align">
-                    <div class="hide-on-small-only">
-                        <div class="row">
-                            <div class="col s6 m12 l12">
-                                <h1>Coorganate</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s6 m12 l12">
-                                <h5>{{message}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hide-on-med-and-up">
-                        <div class="row">
-                            <div class="col s12">
-                                <h1>Coorganate</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <h5>{{message}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <hr />
+<head>
+  {% include 'scripts.html' %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+  <!-- include 'heading0.html' -->
+  <main>
+    <div class="row" id="content">
+      <!-- Logo on left side-->
+      <div class="col s12 m5 l5 left-bg">
+        <div class="header">
+          <h1 id="coorganate-logo">co<b>organ</b>ate</h1>
+          <h5 class="baby-blue-font"><span>by </span><span id="password-logo">password</span><span id="password-logo2">123</span></h5>
+        </div>
+        <div class="center-align">
+          <img class="logo responsive-img" src="/static/images/logo.png">
+        </div>
+      </div>
+      <!-- Request Received message on right side -->
+      <div class="col s12 m7 l7 right-bg">
+        <div class="row center-align">
+          <div class="hide-on-small-only">
             <div class="row">
-                <p style="text-align-last: left;"><a class="waves-effect waves-light modal-trigger" href="/login/">&nbsp Back to log in</a></p>
+              <div class="col s6 m12 l12">
+                <h4 class="sign-in-title">Request Submitted</h4>
+              </div>
+            </div>
+          </div>
+          <div class="hide-on-med-and-up">
+            <div class="row">
+              <div class="col s12">
+                <h1 class="sign-in-title">Request Submitted</h1>
+              </div>
             </div>
           </div>
         </div>
+        <div class="hide-on-small-only">
+          <div class="row">
+            <div class="col s6 m12 l12">
+              <h6 class="request-submit-message" style="text-align-last: center;">{{message}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="hide-on-med-and-up">
+            <div class="row">
+              <div class="col s12">
+                <h6 class="request-submit-message" style="text-align-last: center;">{{message}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-top:30px;">
+              <div class="row center-align">
+                <a class="btn waves-effect waves-light blue-button-medium"
+                  href="/../login">Back to Sign In</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </main>
       <!-- include 'footer.html' %} -->
-   </body>
-</html>
+    </body>
+    </html>
